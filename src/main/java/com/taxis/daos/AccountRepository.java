@@ -1,4 +1,4 @@
-package com.taxis.account;
+package com.taxis.daos;
 
 import com.taxis.entities.Account;
 import org.springframework.data.jpa.repository.JpaRepository;

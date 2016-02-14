@@ -1,6 +1,6 @@
 package com.taxis.config;
 
-import com.taxis.account.AccountService;
+import com.taxis.services.AccountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
-
-import com.taxis.account.AccountService;
 
 @Configuration
 @EnableWebSecurity

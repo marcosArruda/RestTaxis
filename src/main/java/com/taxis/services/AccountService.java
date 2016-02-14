@@ -1,9 +1,10 @@
-package com.taxis.account;
+package com.taxis.services;
 
 import java.util.Collections;
 
 import javax.annotation.PostConstruct;
 
+import com.taxis.daos.AccountRepository;
 import com.taxis.entities.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +24,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 public class AccountService implements UserDetailsService {
 	
 	@Autowired
-	private com.taxis.account.AccountRepository accountRepository;
+	private AccountRepository accountRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;

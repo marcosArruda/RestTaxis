@@ -1,4 +1,4 @@
-package com.taxis.signin;
+package com.taxis.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

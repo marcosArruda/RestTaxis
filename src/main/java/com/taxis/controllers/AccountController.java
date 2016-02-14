@@ -1,7 +1,8 @@
-package com.taxis.account;
+package com.taxis.controllers;
 
 import java.security.Principal;
 
+import com.taxis.daos.AccountRepository;
 import com.taxis.entities.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
