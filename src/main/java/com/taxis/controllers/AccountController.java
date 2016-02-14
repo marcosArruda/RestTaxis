@@ -22,11 +22,6 @@ class AccountController {
 
     private AccountRepository accountRepository;
 
-    @Autowired
-    public AccountController(@Qualifier("accountRepository") AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
-
     @RequestMapping(value = "account/current", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody

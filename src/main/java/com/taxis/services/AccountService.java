@@ -23,7 +23,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AccountService implements UserDetailsService {
 	
-	@Autowired
+
 	private AccountRepository accountRepository;
 
 	@Autowired
@@ -38,7 +38,7 @@ public class AccountService implements UserDetailsService {
 	@Transactional
 	public Account save(Account account) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		accountRepository.save(account);
+		//accountRepository.save(account);
 		return account;
 	}
 
