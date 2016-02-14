@@ -10,9 +10,9 @@ import com.taxis.Application;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-@ComponentScan(basePackageClasses = Application.class)
+@ComponentScan(basePackages = { "com.taxis" })
 class ApplicationConfig {
-
+    //@ComponentScan(basePackageClasses = Application.class)
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();

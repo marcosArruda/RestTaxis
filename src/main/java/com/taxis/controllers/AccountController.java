@@ -5,6 +5,8 @@ import java.security.Principal;
 import com.taxis.repositories.AccountRepository;
 import com.taxis.entities.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.annotation.Reference;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ class AccountController {
     private AccountRepository accountRepository;
 
     @Autowired
-    public AccountController(AccountRepository accountRepository) {
+    public AccountController(@Qualifier("accountRepository") AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
