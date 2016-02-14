@@ -1,23 +1,17 @@
-package com.taxis.account;
+package com.taxis.entities;
 
-import java.time.ZonedDateTime;
-
-import javax.persistence.*;
-
-import java.time.Instant;
+//import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.joda.time.Instant;
 
-@SuppressWarnings("serial")
-@Entity
-@Table(name = "account")
 public class Account implements java.io.Serializable {
 
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private Long id;
 
-	@Column(unique = true)
+	//@Column(unique = true)
 	private String email;
 	
 	@JsonIgnore
@@ -35,7 +29,8 @@ public class Account implements java.io.Serializable {
 		this.email = email;
 		this.password = password;
 		this.role = role;
-		this.created = Instant.now();
+
+		//this.created = Instant.now();
 	}
 
 	public Long getId() {

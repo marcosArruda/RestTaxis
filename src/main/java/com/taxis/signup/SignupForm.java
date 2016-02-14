@@ -1,9 +1,7 @@
 package com.taxis.signup;
 
-import com.taxis.account.Account;
+import com.taxis.entities.Account;
 import org.hibernate.validator.constraints.*;
-
-import com.taxis.account.Account;
 
 public class SignupForm {
 

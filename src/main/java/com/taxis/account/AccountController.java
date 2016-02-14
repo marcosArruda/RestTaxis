@@ -2,6 +2,7 @@ package com.taxis.account;
 
 import java.security.Principal;
 
+import com.taxis.entities.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -27,7 +28,7 @@ class AccountController {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    public com.taxis.account.Account currentAccount(Principal principal) {
+    public Account currentAccount(Principal principal) {
         Assert.notNull(principal);
         return accountRepository.findOneByEmail(principal.getName());
     }
@@ -36,7 +37,7 @@ class AccountController {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     @Secured("ROLE_ADMIN")
-    public com.taxis.account.Account account(@PathVariable("id") Long id) {
+    public Account account(@PathVariable("id") Long id) {
         return accountRepository.findOne(id);
     }
 }

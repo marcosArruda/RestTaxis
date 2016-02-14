@@ -2,11 +2,11 @@ package com.taxis.config;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
+//import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
+//import com.zaxxer.hikari.HikariConfig;
+//import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +42,9 @@ class JpaConfig {
 
     @Bean
     public DataSource dataSource() {
+        /*
         HikariConfig config = new HikariConfig();
+
         config.setDriverClassName(driver);
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -53,6 +55,8 @@ class JpaConfig {
         config.addDataSourceProperty("useServerPrepStmts", "true");
 
         return new HikariDataSource(config);
+         */
+        return null;
     }
 
     @Bean
@@ -67,15 +71,15 @@ class JpaConfig {
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties jpaProperties = new Properties();
-        jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
-        jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
+        //jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
+        //jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
         return entityManagerFactoryBean;
     }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
-    }
+    //@Bean
+    //public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+    //    return new JpaTransactionManager(entityManagerFactory);
+    //}
 }
