@@ -1,9 +1,16 @@
 package com.taxis.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+
 /**
  * Created by marcosarruda on 2/13/16.
  */
+
+
+@Document(collection="drivers")
 public class Driver {
+    @Id
     private Long driverId;
     private String name;
     private String carPlate;
@@ -48,7 +55,7 @@ public class Driver {
         if(lastPosition != null)
             this.lastPosition.setDriverAvailable(driverAvailable);
         else
-            throw new RuntimeException("Driver's lastPosition param is not set; See com.taxis.entities.Driver#driverId = "+driverId);
+            throw new RuntimeException("@> Driver's lastPosition param is not set; See com.taxis.entities.Driver#driverId="+driverId);
     }
 
     public DriverPosition getLastPosition() {

@@ -1,0 +1,19 @@
+- Rodar o MongoDB local;
+	- Aplicar Segurança;
+- Instalar o MongoDB na VM;
+	- Aplicar segurança;
+- Criar os Repositories usando spring-data-mongodb;
+- Criar os Endpoints;
+- Criar a camada de Negocios;
+- Escrever testes para os Rests;
+- Subir local e testar;
+- Subir remoto e testar;
+- Criar um documento no Drive com a explicação de toda a implementação:
+	- Segurança;
+	- Documentação dos Endpoints;
+	- Arquitetura utilizada;
+	- Infraestrutura utilizada;
+- Criar um documento no Drive com a explicação do algoritmo escolhido;
+- Implementar tanto com MongoDB o algoritmo e com base de dados normal;
+- Instalar o Derby ou Mysql para uso Relacional e aplicação do Algoritimo manual;
+- Criar duplicação dos Endpoints para implementar com o algoritmo manual;
