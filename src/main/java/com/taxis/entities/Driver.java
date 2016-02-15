@@ -63,6 +63,9 @@ public class Driver {
     }
 
     public void setLastPosition(DriverPosition lastPosition) {
+        if(lastPosition != null && lastPosition.getDriverId() == null){
+            lastPosition.setDriverId(this.driverId);
+        }
         this.lastPosition = lastPosition;
     }
 

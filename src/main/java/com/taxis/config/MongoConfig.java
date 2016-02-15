@@ -16,10 +16,9 @@ import org.springframework.data.mongodb.core.convert.MongoTypeMapper;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-
-//@Configuration
-//@EnableMongoRepositories(basePackages = { "com.taxis.repositories" })
-//@Lazy
+@Configuration
+@EnableMongoRepositories(basePackages = { "com.taxis.repositories" })
+@Lazy
 class MongoConfig {
 
     @Bean
