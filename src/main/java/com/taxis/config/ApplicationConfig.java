@@ -12,9 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = { "com.taxis" })
 class ApplicationConfig {
-    //@ComponentScan(basePackageClasses = Application.class)
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();

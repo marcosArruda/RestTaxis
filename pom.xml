@@ -177,7 +177,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <path>/teste</path>
+                    <path>/taxis</path>
                 </configuration>
             </plugin>
             <plugin>
@@ -195,6 +195,7 @@
                 <version>2.1.1</version>
                 <configuration>
                     <warName>RestTaxis-1.0.0-SNAPSHOT</warName>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
             <plugin>
