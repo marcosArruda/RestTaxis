@@ -4,6 +4,8 @@ import java.net.UnknownHostException;
 
 import com.mongodb.Mongo;
 
+import com.mongodb.MongoClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -21,14 +23,17 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Lazy
 class MongoConfig {
 
+    @Autowired
+    MongoDbFactory mongoDbFactory;
+
     @Bean
     public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-        return new SimpleMongoDbFactory(new Mongo(), "RestTaxis");
+        return new SimpleMongoDbFactory(new MongoClient("localhost", 27017), "taxis");
     }
 
     @Bean
     public MongoTemplate mongoTemplate() throws UnknownHostException {
-        MongoTemplate template = new MongoTemplate(mongoDbFactory(), mongoConverter());
+        MongoTemplate template = new MongoTemplate(mongoDbFactory, mongoConverter());
         return template;
     }
 
@@ -44,7 +49,7 @@ class MongoConfig {
 
     @Bean
     public MappingMongoConverter mongoConverter() throws UnknownHostException {
-        MappingMongoConverter converter = new MappingMongoConverter(mongoDbFactory(), mongoMappingContext());
+        MappingMongoConverter converter = new MappingMongoConverter(mongoDbFactory, mongoMappingContext());
         converter.setTypeMapper(mongoTypeMapper());
         return converter;
     }

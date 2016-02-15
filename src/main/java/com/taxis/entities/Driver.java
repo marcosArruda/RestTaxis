@@ -3,30 +3,52 @@ package com.taxis.entities;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by marcosarruda on 2/13/16.
  */
 
 
 @Document(collection="drivers")
-public class Driver {
+public class Driver implements Serializable{
     @Id
-    private Long driverId;
+    private String driverId;
     private String name;
     private String carPlate;
-    private DriverPosition lastPosition;
+    private Boolean driverAvailable;
+    private DriverPosition currentPosition;
+    private List<DriverPosition> positions;
 
     public Driver(){}
     public Driver(String name, String carPlate){
         this.name = name;
         this.carPlate = carPlate;
     }
+    public DriverPosition getCurrentPosition() {
+        return currentPosition;
+    }
 
-    public Long getDriverId() {
+    public void setCurrentPosition(DriverPosition currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+
+    public List<DriverPosition> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<DriverPosition> positions) {
+        this.positions = positions;
+    }
+
+
+
+    public String getDriverId() {
         return driverId;
     }
 
-    public void setDriverId(Long driverId) {
+    public void setDriverId(String driverId) {
         this.driverId = driverId;
     }
 
@@ -47,27 +69,13 @@ public class Driver {
     }
 
     public Boolean getDriverAvailable() {
-
-        return lastPosition == null? null : lastPosition.getDriverAvailable();
+        return this.driverAvailable;
     }
 
     public void setDriverAvailable(Boolean driverAvailable) {
-        if(lastPosition != null)
-            this.lastPosition.setDriverAvailable(driverAvailable);
-        else
-            throw new RuntimeException("@> Driver's lastPosition param is not set; See com.taxis.entities.Driver#driverId="+driverId);
+        this.driverAvailable = driverAvailable;
     }
 
-    public DriverPosition getLastPosition() {
-        return lastPosition;
-    }
-
-    public void setLastPosition(DriverPosition lastPosition) {
-        if(lastPosition != null && lastPosition.getDriverId() == null){
-            lastPosition.setDriverId(this.driverId);
-        }
-        this.lastPosition = lastPosition;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -76,17 +84,21 @@ public class Driver {
 
         Driver driver = (Driver) o;
 
-        if (!getName().equals(driver.getName())) return false;
-        if (!getCarPlate().equals(driver.getCarPlate())) return false;
-        return !(getLastPosition() != null ? !getLastPosition().equals(driver.getLastPosition()) : driver.getLastPosition() != null);
+        if (getDriverId() != null ? !getDriverId().equals(driver.getDriverId()) : driver.getDriverId() != null)
+            return false;
+        if (getName() != null ? !getName().equals(driver.getName()) : driver.getName() != null) return false;
+        if (getCarPlate() != null ? !getCarPlate().equals(driver.getCarPlate()) : driver.getCarPlate() != null)
+            return false;
+        return !(getDriverAvailable() != null ? !getDriverAvailable().equals(driver.getDriverAvailable()) : driver.getDriverAvailable() != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + getCarPlate().hashCode();
-        result = 31 * result + (getLastPosition() != null ? getLastPosition().hashCode() : 0);
+        int result = getDriverId() != null ? getDriverId().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getCarPlate() != null ? getCarPlate().hashCode() : 0);
+        result = 31 * result + (getDriverAvailable() != null ? getDriverAvailable().hashCode() : 0);
         return result;
     }
 }
