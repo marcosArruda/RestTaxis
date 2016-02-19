@@ -9,8 +9,6 @@ import java.util.List;
 /**
  * Created by marcosarruda on 2/13/16.
  */
-
-
 @Document(collection="drivers")
 public class Driver implements Serializable{
     @Id

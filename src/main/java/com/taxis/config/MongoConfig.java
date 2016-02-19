@@ -16,6 +16,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import java.net.UnknownHostException;
 
+/**
+ * Created by marcosarruda on 2/13/16.
+ */
 @Configuration
 @EnableMongoRepositories(basePackages = { "com.taxis.repositories" })
 @Lazy

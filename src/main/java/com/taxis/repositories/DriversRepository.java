@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Created by marcosarruda on 2/13/16.
+ */
 @Repository
 public interface DriversRepository extends MongoRepository<Driver, String> {
     long countByNameAndCarPlate(String name, String carPlate);

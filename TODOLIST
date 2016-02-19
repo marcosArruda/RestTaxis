@@ -1,19 +1,34 @@
-- Rodar o MongoDB local;
-	- Aplicar Segurança;
+
 - Instalar o MongoDB na VM;
 	- Aplicar segurança;
-- Criar os Repositories usando spring-data-mongodb;
-- Criar os Endpoints;
 - Criar a camada de Negocios;
 - Escrever testes para os Rests;
-- Subir local e testar;
 - Subir remoto e testar;
 - Criar um documento no Drive com a explicação de toda a implementação:
 	- Segurança;
 	- Documentação dos Endpoints;
 	- Arquitetura utilizada;
 	- Infraestrutura utilizada;
-- Criar um documento no Drive com a explicação do algoritmo escolhido;
+- Criar um documento no Drive com a explicação o algoritmo escolhido;
 - Implementar tanto com MongoDB o algoritmo e com base de dados normal;
 - Instalar o Derby ou Mysql para uso Relacional e aplicação do Algoritimo manual;
 - Criar duplicação dos Endpoints para implementar com o algoritmo manual;
+- Criar endpoints:
+	- busca inArea passando a posição atual do cliente, retornando todos os mais proximos num raio de X metros;
+	- Remover Taxista;
+	- Atualizar dados principais do taxista;
+	- Incluir e atualizar metadados do taxista:
+		- Idade do taxisa;
+		- Carro:
+			- Modelo;
+			- Placa;
+			- renavam;
+		- Carteira de Motorista;
+		- Detalhes de infração de Transito;
+		- Reclamações vinculadas;
+	- Fazer filtro levando em conta também os metadas do taxista;
+	- Função para o cliente poder não receber mais resultados de um taxista X;
+- Implementar Cache;
+- Criar uma tela web para fazer as pesquisas e ver os resultados;
+
+
