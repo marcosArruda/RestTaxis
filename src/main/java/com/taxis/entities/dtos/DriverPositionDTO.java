@@ -1,7 +1,5 @@
 package com.taxis.entities.dtos;
 
-import com.google.common.base.Objects;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.taxis.entities.DriverPosition;
 import org.joda.time.Instant;
 

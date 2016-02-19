@@ -1,9 +1,5 @@
 package com.taxis.config;
 
-import java.net.UnknownHostException;
-
-import com.mongodb.Mongo;
-
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +13,8 @@ import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.convert.MongoTypeMapper;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
+import java.net.UnknownHostException;
 
 @Configuration
 @EnableMongoRepositories(basePackages = { "com.taxis.repositories" })

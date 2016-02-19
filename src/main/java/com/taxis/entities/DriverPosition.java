@@ -1,9 +1,7 @@
 package com.taxis.entities;
 
 import com.google.common.base.Objects;
-import org.joda.time.Instant;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -16,6 +14,8 @@ public class DriverPosition {
     private double latitude;
     private double longitude;
 
+    private Double[] point = new Double[2];
+
     /*
     POST /drivers/8475/status '{"latitude":-
             23.60810717,"longitude":-
@@ -27,6 +27,17 @@ public class DriverPosition {
     public DriverPosition(double latitude, double longitude){
         this.latitude = latitude;
         this.longitude = longitude;
+
+        this.point[0] = latitude;
+        this.point[1] = longitude;
+    }
+
+    public Double[] getPoint() {
+        return point;
+    }
+
+    public void setPoint(Double[] point) {
+        this.point = point;
     }
 
     public Date getDate() {
@@ -43,7 +54,10 @@ public class DriverPosition {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+        this.point[0] = latitude;
     }
+
+
 
     public double getLongitude() {
         return longitude;
@@ -51,6 +65,8 @@ public class DriverPosition {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+        this.point[1] = longitude;
+
     }
 
     public String getDriverId() {
