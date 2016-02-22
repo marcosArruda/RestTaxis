@@ -32,3 +32,25 @@
 - Criar uma tela web para fazer as pesquisas e ver os resultados;
 
 
+
+
+
+
+========================
+Objetivos Bonus
+========================
+
+1. Subir a aplicação "na nuvem" e enviar o link para testarmos os endpoints.
+2. Descrever algoritmo ótimo de procura dos taxistas.
+3. Autenticação nos endpoints, explicando a solução.
+4. Criar outros endpoints que possibilitem a mesma funcionalidade mas com
+outro fluxo.
+5. Endpoint Cria taxista:
+	a. Parâmetros:
+		i. name
+		ii. carPlate: placa do carro
+	b. Resposta:
+		i. Apenas status code HTTP
+	c. Exemplos:
+		i. POST /drivers
+			'{"name":"Pedro","carPlate":"RPC-9999"}'

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = { "com.taxis.controllers" })
+@ComponentScan(basePackages = { "com.taxis.controllers", "com.taxis.business" })
 class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override

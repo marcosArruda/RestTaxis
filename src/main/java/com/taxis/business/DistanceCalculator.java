@@ -3,7 +3,7 @@ package com.taxis.business;
 /**
  * Created by marcosarruda on 2/13/16.
  */
-public class DistanceCalculator {
+public class  DistanceCalculator {
     /*
  * Calculate distance between two points in latitude and longitude taking
  * into account height difference. If you are not interested in height

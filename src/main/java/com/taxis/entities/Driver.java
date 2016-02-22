@@ -1,5 +1,6 @@
 package com.taxis.entities;
 
+import com.taxis.entities.dtos.DriverDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

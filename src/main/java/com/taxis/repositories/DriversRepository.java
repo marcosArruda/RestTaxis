@@ -14,4 +14,6 @@ import java.util.List;
 public interface DriversRepository extends MongoRepository<Driver, String> {
     long countByNameAndCarPlate(String name, String carPlate);
     List<Driver> findByCurrentPositionPointWithin(Box box);
+    Driver findByName(String name);
+    Driver findByCarPlate(String carPlate);
 }

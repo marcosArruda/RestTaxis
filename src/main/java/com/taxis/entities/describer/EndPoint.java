@@ -12,10 +12,20 @@ public class Endpoint {
     private String description;
     private List<String> requestParams = new ArrayList<String>();
     private String responseExample;
+    private String method;
 
-    public Endpoint(String link, String description){
+    public Endpoint(String link, String method, String description){
         this.link = link;
+        this.method = method;
         this.description = description;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     public String getLink() {

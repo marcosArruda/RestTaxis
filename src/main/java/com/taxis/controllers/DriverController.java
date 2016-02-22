@@ -1,9 +1,11 @@
 package com.taxis.controllers;
 
+import com.taxis.business.DriverService;
 import com.taxis.business.EndpointFactory;
 import com.taxis.entities.Driver;
 import com.taxis.entities.describer.Describe;
 import com.taxis.entities.dtos.DriverDTO;
+import com.taxis.entities.dtos.DriverIdDTO;
 import com.taxis.entities.dtos.DriverPositionDTO;
 import com.taxis.repositories.DriversRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ import java.util.List;
 public class DriverController {
 
 	@Autowired
-	private DriversRepository driversRepository;
+	private DriverService driverService;
 
 	@RequestMapping("/describe")
 	public Describe describe() {
@@ -33,43 +35,50 @@ public class DriverController {
 	//FINISHED
 	@RequestMapping(value="/drivers", method=RequestMethod.POST)
 	public void postDriver(@RequestBody DriverDTO driver) {
-		if(driver.getName() != null && driver.getCarPlate() != null
-				&& driversRepository.countByNameAndCarPlate(driver.getName(), driver.getCarPlate()) < 1){
-			Driver d = new Driver(driver.getName(), driver.getCarPlate());
-			d.setDriverAvailable(true);
-			driversRepository.insert(d);
+		driverService.insertDriver(driver);
+	}
+
+	//FINISHED
+	@RequestMapping(value="/drivers/ret", method=RequestMethod.POST)
+	public DriverIdDTO postDriverRet(@RequestBody DriverDTO driver) {
+		DriverIdDTO dto = new DriverIdDTO();
+		DriverPositionDTO d = driverService.insertDriver(driver);
+		if(d != null){
+			dto.setDriverId(d.getDriverId());
 		}
+		return dto;
+	}
+
+	//FINISHED
+	@RequestMapping(value="/drivers/{driverId}", method=RequestMethod.DELETE)
+	public void deleteDriver(@PathVariable(value = "driverId") String driverId) {
+		driverService.deleteDriver(driverId);
 	}
 
 	//FINISHED
 	@RequestMapping(value="/drivers/{driverId}/status", method=RequestMethod.POST)
 	public void postDriverStatus(@RequestBody DriverPositionDTO driverPositionDTO, @PathVariable(value = "driverId") String driverId) {
-		if(driversRepository.exists(driverId)){
-			Driver d = driversRepository.findOne(driverId);
-			d.setDriverAvailable(driverPositionDTO.getDriverAvailable());
-			d.setCurrentPosition(driverPositionDTO.toEntity(driverId));
-			driversRepository.save(d);
-		}
+		driverService.updateDriverStatus(driverPositionDTO, driverId);
+	}
+
+	@RequestMapping(value="/drivers/name/{strname}", method=RequestMethod.GET)
+	public DriverIdDTO getDriverByName(@PathVariable(value = "strname") String strname) {
+		DriverIdDTO dto = new DriverIdDTO();
+		dto.setDriverId(driverService.getDriverIdByName(strname));
+		return dto;
+	}
+
+	@RequestMapping(value="/drivers/carplate/{strcarplate}", method=RequestMethod.GET)
+	public DriverIdDTO getDriverByCarPlate(@PathVariable(value = "strcarplate") String strcarplate) {
+		DriverIdDTO dto = new DriverIdDTO();
+		dto.setDriverId(driverService.getDriverIdByCarPlate(strcarplate));
+		return dto;
 	}
 
 	//FINISHED
 	@RequestMapping(value="/drivers/{driverId}/status", method=RequestMethod.GET)
 	public DriverPositionDTO getDriverStatus(@PathVariable(value = "driverId") String driverId) {
-		if(driversRepository.exists(driverId)){
-			Driver d = driversRepository.findOne(driverId);
-
-			DriverPositionDTO dto = new DriverPositionDTO();
-			dto.setDriverAvailable(d.getDriverAvailable());
-			dto.setDriverId(d.getDriverId());
-
-			if(d.getCurrentPosition() != null){
-				dto.setLatitude(d.getCurrentPosition().getLatitude());
-				dto.setLongitude(d.getCurrentPosition().getLongitude());
-				return dto;
-			}else
-				return DriverPositionDTO.buildDriverCurrentPositionNotFound(dto);
-		}else
-			return DriverPositionDTO.buildDriverNotFound(driverId);
+		return driverService.getDriverStatus(driverId);
 	}
 
 	/*
@@ -107,15 +116,7 @@ public class DriverController {
 	 */
 	//FINISHED
 	@RequestMapping(value="/drivers/inArea", method=RequestMethod.GET)
-	public List<DriverPositionDTO> getDriverStatus(@RequestParam("sw") double[] sw, @RequestParam("ne") double[] ne) {
-		Box b = new Box(new Point(sw[0],sw[1]), new Point(ne[0], ne[1]));
-		List<Driver> inPositionDrivers = driversRepository.findByCurrentPositionPointWithin(b);
-		List<DriverPositionDTO> list = new ArrayList<DriverPositionDTO>();
-		for(Driver d : inPositionDrivers){
-			DriverPositionDTO dDTO = new DriverPositionDTO(d.getCurrentPosition().getLatitude(), d.getCurrentPosition().getLongitude(), d.getDriverAvailable());
-			dDTO.setDriverId(d.getDriverId());
-			list.add(dDTO);
-		}
-		return list;
+	public List<DriverPositionDTO> findInArea(@RequestParam("sw") double[] sw, @RequestParam("ne") double[] ne) {
+		return driverService.findDriverInBox(sw, ne);
 	}
 }
